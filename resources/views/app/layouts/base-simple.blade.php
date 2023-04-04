@@ -42,84 +42,14 @@
         <![endif]-->
     </head>
     <body>
+        <div class="loader">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
         
-        <div class="alpha-app">
-            <div class="page-header">
-                <nav class="navbar navbar-expand primary">
-                    <section class="material-design-hamburger navigation-toggle">
-                        <a href="javascript:void(0)" data-activates="slide-out" class="button-collapse material-design-hamburger__icon">
-                            <span class="material-design-hamburger__layer"></span>
-                        </a>
-                    </section>
-                    <a class="navbar-brand" href="#">Minha Loja</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                </nav>
-            </div><!-- Page Header -->
+            
           
-            <div class="page-sidebar">
-                <div class="page-sidebar-inner">
-                    <div class="page-sidebar-profile">
-                       
-                        <div class="sidebar-profile-info">
-                            <a href="javascript:void(0);" class="account-settings-link">
-                                <p>David Doe</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="page-sidebar-menu">
-                       
-                        <div class="sidebar-accordion-menu">
-                            <ul class="sidebar-menu list-unstyled">
-                                <li>
-                                    <a href="home.php" class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='home.php'? 'active' : ''?> ">
-                                        <i class="material-icons">settings_input_svideo</i>Resumo
-                                    </a>
-                                </li>
-                               
-                                <li>
-                                    <a href="produtos.php" class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='produtos.php'? 'active' : ''?> ">
-                                        <i class="material-icons">checkroom</i>Produto
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="categorias.php"  class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='categorias.php'? 'active' : ''?>">
-                                        <i class="material-icons">category</i>Categorias
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="movimentacao.php"   class="waves-effect waves-grey <?= basename($_SERVER['PHP_SELF']) =='movimentacao.php'? 'active' : ''?>">
-                                        <i class="material-icons">trending_up</i>Movimentacao
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="suporte.php"  class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='suporte.php'? 'active' : ''?>">
-                                        <i class="material-icons">help</i>Suporte
-                                    </a>
-                                </li>
-                               
-                               
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="sidebar-footer px-0">
-                    <div class="sidebar-accordion-menu">
-                            <ul class="sidebar-menu list-unstyled">
-                            <li>
-                                    <a href="index.php" class="waves-effect waves-grey">
-                                        <i class="material-icons">logout</i>Sair
-                                    </a>
-                                </li>
-
-                            </ul>
-                    </div>
-                       
-
-                    </div>
-                </div>
-            </div><!-- Left Sidebar -->
             <div class="page-content">
 
                 @yield('conteudo')

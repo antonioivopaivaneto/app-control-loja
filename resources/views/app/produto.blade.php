@@ -103,54 +103,55 @@
                 
             </div><!-- Page Content -->
           
+            
+<script>
+    $(document).ready(function() {
+      $('#addProduto').hide();
+
+
+      
+      $('#addnew').on('click', function(){
+            toastr.success('Are you the 6 fingered man?')
+       });
+
+      $('#closeAddProduto').click(function(){
+        $('#addProduto').hide(500);
+      })
+      $('#addNewProduto').click(function(){
+        $('#addProduto').show(500);
+      })
+
+      
+      $("#mytable").Grid({
+        language: {
+  'search': {
+    'placeholder': '🔍 Pesquisar..'
+  },
+  'pagination': {
+    'previous': '⬅️',
+    'next': '➡️',
+    'showing': '😃 Mostrando',
+    'results': () => 'Campos'
+  }
+},
+        search:true,
+        pagination:{
+          limit:5,
+        }
+      });
+
+      $('.gridjs-search').prepend('<span>pesquisar</span>');
+
+
+    })
+
+
+  </script>
 
             @endsection
 
 
 
-<script>
-      $(document).ready(function() {
-        $('#addProduto').hide();
-
-
-        
-        $('#addnew').on('click', function(){
-              toastr.success('Are you the 6 fingered man?')
-         });
-
-        $('#closeAddProduto').click(function(){
-          $('#addProduto').hide(500);
-        })
-        $('#addNewProduto').click(function(){
-          $('#addProduto').show(500);
-        })
-
-        
-        $("#mytable").Grid({
-          language: {
-    'search': {
-      'placeholder': '🔍 Pesquisar..'
-    },
-    'pagination': {
-      'previous': '⬅️',
-      'next': '➡️',
-      'showing': '😃 Mostrando',
-      'results': () => 'Campos'
-    }
-  },
-          search:true,
-          pagination:{
-            limit:5,
-          }
-        });
-
-        $('.gridjs-search').prepend('<span>pesquisar</span>');
-
-
-      })
-
-
-    </script>
 
     
 

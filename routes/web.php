@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LojaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,7 @@ Route::get('/', function () {
     return view('app.login');
 });
 
-Route::get('/loja', function () {
-    return view('app.loja');
-})->name('loja');
+Route::get('/loja',[LojaController::class,'index'] )->name('loja');
 
 Route::get('/home', function () {
     return view('app.home');
