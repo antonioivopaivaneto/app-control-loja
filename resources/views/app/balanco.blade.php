@@ -9,35 +9,43 @@
                     <div class="row">
                         <div class="col-12">
                             <h2 class="page-title">Dashboard</h2>
-
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-12">
+                        <h2 class="ml-3">{{date("M")}}</h2>
+                        <div class="col-lg-12 col-md-12">
                                 <div class="row">
-
-                                    @foreach ($categorias as $c)
-
-
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="card info-card">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{$c->nome}}</h5>
+                                            <h5 class="card-title">Total de Vendas</h5>
                                             <div class="info-card-text">
-                                                <h3>{{$c->produtos->sum('estoque')}}</h3>
-                                                <span class="info-card-helper">em estoque</span>
+                                                <h3 class="text-success">R$ {{number_format($quant_total_vendas,2)}}</h3>
+                                                <span class="info-card-helper">Valor Total de vendas</span>
                                             </div>
                                             <div class="info-card-icon">
                                                 <i class="material-icons">inventory</i>
                                             </div>
                                         </div>
-
-                                        <div class="progress">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: {{round($c->produtos_count *  $c->quantidade_minima)}}%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>                                    </div>
                                 </div>
-                                @endforeach
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="card info-card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Valor Total de Vendas</h5>
+                                            <div class="info-card-text">
+                                                <h3 class="text-success">{{$quant_total_saidas}}</h3>
+                                                <span class="info-card-helper">Quantidade total de vendas </span>
+                                            </div>
+                                            <div class="info-card-icon">
+                                                <i class="material-icons">inventory</i>
+                                            </div>
+                                        </div>
+                                </div>
+                                </div>
+
 
 
                             </div>
@@ -59,7 +67,7 @@
                                             <div class="report-text {{$m->tipo == 'entrada'? 'text-success' : 'text-danger'}}">{{$m->tipo}}
                                                 <span>{{$m->produto->nome}} - Quantidade : {{$m->quantidade}}</span>
                                             </div>
-                                            <div class="report-helper">{{$m->created_at->diffForHumans()}}</div>
+                                            <div class="report-helper">{{$m->created_at->format("d/m/Y H:i")}}</div>
 
                                         </li>
                                         @endforeach

@@ -10,7 +10,7 @@
         <!-- Remove Tap Highlight on Windows Phone IE -->
         <meta name="msapplication-tap-highlight" content="no"/>
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        
+
         <!-- Title -->
         <title>Minha Loja</title>
 
@@ -23,13 +23,16 @@
         <link href={{ asset("assets/plugins/nvd3/nv.d3.min.css") }} rel="stylesheet">
 
         <script src={{ asset("assets/js/jquery.min.js") }} ></script>
-        <link href={{ asset("assets/plugins/toastr/toastr.min.css") }} rel="stylesheet">   
+        <link href={{ asset("assets/plugins/toastr/toastr.min.css") }} rel="stylesheet">
+        <script src={{ asset("assets/plugins/toastr/toastr.min.js") }}></script>
 
 
 
 
 
-      
+
+
+
         <!-- Theme Styles -->
         <link href={{ asset("assets/css/alpha.min.css") }} rel="stylesheet">
         <link href={{ asset("assets/css/custom.css") }} rel="stylesheet">
@@ -42,28 +45,32 @@
         <![endif]-->
     </head>
     <body>
-        <div class="loader">
-            <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        
-            
-          
+
+
+        @if (Session::has('message'))
+        <script>
+           toastr.success("{{Session('message')}}");
+
+        </script>
+
+        @endif
+
+
+
             <div class="page-content">
 
                 @yield('conteudo')
 
             </div>
-            
+
             </div>
 
 
 
-                
-                
-            
-          
+
+
+
+
 
             <script src={{ asset("assets/plugins/bootstrap/popper.min.js") }}></script>
             <script src={{ asset("assets/plugins/bootstrap/js/bootstrap.min.js") }}></script>
@@ -80,11 +87,9 @@
             <script src={{ asset("assets/plugins/flot/jquery.flot.tooltip.min.js") }}></script>
             <script src={{ asset("assets/js/alpha.min.js") }}></script>
             <script src={{ asset("assets/js/pages/dashboard.js") }}></script>
-            <script src={{ asset("assets/plugins/toastr/toastr.min.js") }}></script>
-    
-    
+
+
         </body>
     </html>
-    
-    
-    
+
+

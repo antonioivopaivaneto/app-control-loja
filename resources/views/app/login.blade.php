@@ -10,10 +10,13 @@
         <!-- Remove Tap Highlight on Windows Phone IE -->
         <meta name="msapplication-tap-highlight" content="no"/>
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        
+
         <!-- Title -->
         <title>App</title>
         <script src="assets/plugins/jquery/jquery-3.4.1.min.js"></script>
+
+        <link href={{ asset("assets/plugins/toastr/toastr.min.css") }} rel="stylesheet">
+        <script src={{ asset("assets/plugins/toastr/toastr.min.js") }}></script>
 
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
@@ -22,10 +25,12 @@
         <link href="assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
         <link href="assets/plugins/waves/waves.min.css" rel="stylesheet">
 
-      
+
         <!-- Theme Styles -->
         <link href="assets/css/alpha.min.css" rel="stylesheet">
         <link href="assets/css/custom.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,7 +46,15 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        
+
+        @if (Session::has('message'))
+        <script>
+           toastr.error("{{Session('message')}}");
+
+        </script>
+
+        @endif
+
         <div class="alpha-app">
             <div class="container">
                 <div class="login-container">
@@ -52,24 +65,27 @@
                                     <h3 class="text-center">seu logo aqui</h3>
                                     <br>
                                     <h5 class="card-title">Acesso ao Sistema</h5>
-                                    
+                                    <form action={{ route('login')}} method="POST">
+                                        @csrf
                                     <div class="form-group">
                                         <label for="email">Login</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Senha</label>
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                                     </div>
-                                    <a href={{ route('loja')}} class="btn btn-primary float-right">Entrar</a>
+                                    <button type="submit" class="btn btn-primary float-right">Entrar</button>
                                 </div>
+                            </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
      <!-- Javascripts -->
      <script src="assets/plugins/jquery/jquery-3.4.1.min.js"></script>
      <script src="assets/plugins/bootstrap/popper.min.js"></script>

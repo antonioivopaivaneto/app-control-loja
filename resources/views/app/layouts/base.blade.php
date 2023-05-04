@@ -10,7 +10,7 @@
         <!-- Remove Tap Highlight on Windows Phone IE -->
         <meta name="msapplication-tap-highlight" content="no"/>
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        
+
         <!-- Title -->
         <title>Minha Loja</title>
 
@@ -23,13 +23,16 @@
         <link href={{ asset("assets/plugins/nvd3/nv.d3.min.css") }} rel="stylesheet">
 
         <script src={{ asset("assets/js/jquery.min.js") }} ></script>
-        <link href={{ asset("assets/plugins/toastr/toastr.min.css") }} rel="stylesheet">   
+
+        <link href={{ asset("assets/plugins/toastr/toastr.min.css") }} rel="stylesheet">
+        <script src={{ asset("assets/plugins/toastr/toastr.min.js") }}></script>
 
 
+        <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+        <script src="https://unpkg.com/gridjs-jquery/dist/gridjs.production.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" />
 
 
-
-      
         <!-- Theme Styles -->
         <link href={{ asset("assets/css/alpha.min.css") }} rel="stylesheet">
         <link href={{ asset("assets/css/custom.css") }} rel="stylesheet">
@@ -42,11 +45,7 @@
         <![endif]-->
     </head>
     <body>
-        <div class="loader">
-            <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
+
         <div class="alpha-app">
             <div class="page-header">
                 <nav class="navbar navbar-expand primary">
@@ -55,56 +54,72 @@
                             <span class="material-design-hamburger__layer"></span>
                         </a>
                     </section>
-                    <a class="navbar-brand" href="#">Minha Loja</a>
+                    <a class="navbar-brand" href="{{route('loja')}}"> {{Session('loja')}}</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                 </nav>
             </div><!-- Page Header -->
-          
+
             <div class="page-sidebar">
                 <div class="page-sidebar-inner">
                     <div class="page-sidebar-profile">
-                       
+
                         <div class="sidebar-profile-info">
                             <a href="javascript:void(0);" class="account-settings-link">
-                                <p>David Doe</p>
+                                <p>
+                                    {{Session('name_user')}}
+
+
+
+                                </p>
                             </a>
+
                         </div>
                     </div>
                     <div class="page-sidebar-menu">
-                       
+
                         <div class="sidebar-accordion-menu">
                             <ul class="sidebar-menu list-unstyled">
                                 <li>
-                                    <a href="home.php" class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='home.php'? 'active' : ''?> ">
+                                    <a href="{{route('home')}}" class="waves-effect waves-grey  {{Route::currentRouteName() == 'home.loja' ? 'active' :''}}">
                                         <i class="material-icons">settings_input_svideo</i>Resumo
                                     </a>
                                 </li>
-                               
                                 <li>
-                                    <a href="produtos.php" class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='produtos.php'? 'active' : ''?> ">
+                                    <a href="{{route('categoria.index')}}"  class="waves-effect waves-grey   {{Route::currentRouteName() == 'categoria.index' ? 'active' :''}}">
+                                        <i class="material-icons">category</i>Categorias
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{route('produto.index')}}" class="waves-effect waves-grey   {{Route::currentRouteName() == 'produto.index' ? 'active' :''}} ">
                                         <i class="material-icons">checkroom</i>Produto
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="categorias.php"  class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='categorias.php'? 'active' : ''?>">
-                                        <i class="material-icons">category</i>Categorias
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="movimentacao.php"   class="waves-effect waves-grey <?= basename($_SERVER['PHP_SELF']) =='movimentacao.php'? 'active' : ''?>">
+                                    <a href="{{route('movimentacao.index')}}"   class="waves-effect waves-grey {{Route::currentRouteName() == 'movimentacao.index' ? 'active' : ''}}">
                                         <i class="material-icons">trending_up</i>Movimentacao
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="suporte.php"  class="waves-effect waves-grey  <?= basename($_SERVER['PHP_SELF']) =='suporte.php'? 'active' : ''?>">
+                                    <a href="{{route('balanco')}}"   class="waves-effect waves-grey {{Route::currentRouteName() == 'balanco.index' ? 'active' : ''}}">
+                                        <i class="material-icons">account_balance</i>Balanço
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('comissao')}}"   class="waves-effect waves-grey {{Route::currentRouteName() == 'comissao.index' ? 'active' : ''}}">
+                                        <i class="material-icons">calculate</i>Calcular Comissao
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('ajuda')}}"  class="waves-effect waves-grey  {{Route::currentRouteName() == 'ajuda' ? 'active' :''}}">
                                         <i class="material-icons">help</i>Suporte
                                     </a>
                                 </li>
-                               
-                               
+
+
                             </ul>
                         </div>
                     </div>
@@ -112,32 +127,40 @@
                     <div class="sidebar-accordion-menu">
                             <ul class="sidebar-menu list-unstyled">
                             <li>
-                                    <a href="index.php" class="waves-effect waves-grey">
+                                    <a href="{{route('sair')}}" class="waves-effect waves-grey">
                                         <i class="material-icons">logout</i>Sair
                                     </a>
                                 </li>
 
                             </ul>
                     </div>
-                       
+
 
                     </div>
                 </div>
             </div><!-- Left Sidebar -->
             <div class="page-content">
 
+                @if (Session::has('message'))
+                <script>
+                   toastr.success("{{Session('message')}}");
+
+                </script>
+
+                @endif
+
                 @yield('conteudo')
 
             </div>
-            
+
             </div>
 
 
 
-                
-                
-            
-          
+
+
+
+
 
             <script src={{ asset("assets/plugins/bootstrap/popper.min.js") }}></script>
             <script src={{ asset("assets/plugins/bootstrap/js/bootstrap.min.js") }}></script>
@@ -155,10 +178,8 @@
             <script src={{ asset("assets/js/alpha.min.js") }}></script>
             <script src={{ asset("assets/js/pages/dashboard.js") }}></script>
             <script src={{ asset("assets/plugins/toastr/toastr.min.js") }}></script>
-    
-    
+
         </body>
     </html>
-    
-    
-    
+
+

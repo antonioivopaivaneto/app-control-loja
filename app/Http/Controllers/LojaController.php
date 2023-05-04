@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Loja;
 use App\Http\Requests\StoreLojaRequest;
 use App\Http\Requests\UpdateLojaRequest;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 class LojaController extends Controller
 {
     /**
@@ -15,7 +16,20 @@ class LojaController extends Controller
      */
     public function index()
     {
-        return view('app.loja');
+
+        if(Auth::user()){
+            $lojas = Loja::all();
+
+        $user_loja = User::find(Auth::user()->id)->loja()->get();
+
+
+        return view('app.loja',["lojas" => $lojas,'user_loja' => $user_loja]);
+
+        }else{
+            return redirect()->route('/');
+
+        }
+
     }
 
     /**
@@ -82,5 +96,9 @@ class LojaController extends Controller
     public function destroy(Loja $loja)
     {
         //
+    }
+
+    public function ajuda(){
+        return view('app.ajuda');
     }
 }
