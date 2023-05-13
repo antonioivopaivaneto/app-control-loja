@@ -62,9 +62,12 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="card login-box">
                                 <div class="card-body">
-                                    <h3 class="text-center">seu logo aqui</h3>
+                                    <div class="text-center">
+                                        <img class="img-fluid text-center mx-0 mb-3" width="190px" src="{{asset('assets/images/logo.png')}}" alt="">
+                                    </div>
+                                    {{--<h3 class="text-center font-weight-bolder text-uppercase">Smart Solution ID</h3>--}}
                                     <br>
-                                    <h5 class="card-title">Acesso ao Sistema</h5>
+                                   {{-- <h5 class="card-title">Acesso ao Sistema</h5>--}}
                                     <form action={{ route('login')}} method="POST">
                                         @csrf
                                     <div class="form-group">

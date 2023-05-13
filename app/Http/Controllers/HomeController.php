@@ -21,6 +21,11 @@ class HomeController extends Controller
         //dd($request);
         $id_loja = $request->get('loja');
         $loja = Loja::where('id',$id_loja)->first();
+
+        if($loja->status ==='0'){
+            return view('app.loja');
+        }
+
         $request->session()->put('loja',$loja->nome);
         $request->session()->put('loja_id',$loja->id);
 
@@ -29,7 +34,7 @@ class HomeController extends Controller
 
 
          $categorias = Categoria::all();
-         $movimentacoes = Movimentacao::paginate(5);
+         $movimentacoes = Movimentacao::where('loja_id','=',Session('loja_id'))->orderBy('id', 'DESC')->paginate(5);
 
         return view('app.home',['categorias' => $categorias,'movimentacoes' => $movimentacoes]);
     }
@@ -110,7 +115,7 @@ class HomeController extends Controller
 
         //echo $prod;
         //dd($produtos_categoria);
-        $movimentacoes = Movimentacao::paginate(5);
+        $movimentacoes = Movimentacao::where('loja_id','=',Session('loja_id'))->orderBy('id', 'DESC')->paginate(5);
         return view('app.home',['categorias' => $teste,'total' => $total,'movimentacoes' => $movimentacoes]);
     }
 }

@@ -12,14 +12,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <h2 class="ml-3">{{date("M")}}</h2>
+                        <h2 class="ml-3">{{$mes}}</h2>
                         <div class="col-lg-12 col-md-12">
                                 <div class="row">
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="card info-card">
                                         <div class="card-body">
-                                            <h5 class="card-title">Total de Vendas</h5>
+                                            <h5 class="card-title">Total de Produtos Vendidos</h5>
                                             <div class="info-card-text">
                                                 <h3 class="text-success">R$ {{number_format($quant_total_vendas,2)}}</h3>
                                                 <span class="info-card-helper">Valor Total de vendas</span>

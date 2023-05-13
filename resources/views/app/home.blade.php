@@ -13,19 +13,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-12 col-md-12">
                                 <div class="row">
 
                                     @foreach ($categorias as $c)
 
 
 
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-3 col-md-3">
                                     <div class="card info-card">
                                         <div class="card-body">
                                             <h5 class="card-title">{{$c->nome}}</h5>
                                             <div class="info-card-text">
-                                                <h3>{{$c->produtos->sum('estoque')}}</h3>
+                                                <h3>{{$c->produtos->where('loja_id','=',Session('loja_id'))->sum('estoque')}}</h3>
                                                 <span class="info-card-helper">em estoque</span>
                                             </div>
                                             <div class="info-card-icon">
@@ -51,17 +51,22 @@
                                     <div class="card-info"><a href="#" class="btn btn-xs btn-text-dark">Ver Todas</a></div>
                                     <ul class="report-list list-unstyled">
 
-                                        @foreach ($movimentacoes as $m )
+                                        @foreach ($movimentacoes->where('loja_id','=',Session('loja_id')) as $m )
 
 
                                         <li class="report-item report-info ">
                                             <div class="report-icon"><i class="material-icons {{$m->tipo == 'entrada'? 'text-success' : 'text-danger'}}">{{$m->tipo == 'entrada'? 'arrow_forward' : 'arrow_back'}}</i></div>
                                             <div class="report-text {{$m->tipo == 'entrada'? 'text-success' : 'text-danger'}}">{{$m->tipo}}
                                                 <span>{{$m->produto->nome}} - Quantidade : {{$m->quantidade}}</span>
+                                                <span>Usuario: {{$m->usuario->name}}</span>
+                                                <span>Valor:R$ {{number_format($m->produto->preco_venda*$m->quantidade,2)}}
+                                                </span>
                                             </div>
                                             <div class="report-helper">{{$m->created_at->diffForHumans()}}</div>
 
                                         </li>
+                                        <hr>
+
                                         @endforeach
 
                                     </ul>

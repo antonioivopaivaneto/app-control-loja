@@ -14,6 +14,7 @@ class BalancoController extends Controller
         $balanco = DB::table('movimentacoes')
         ->join('produtos', 'produtos.id', '=', 'movimentacoes.produto_id')
         ->where('tipo', '=', 'saida')
+        ->where('movimentacoes.loja_id', '=', Session('loja_id') )
         ->get();
 
          $quant_total_saidas= 0;
@@ -26,8 +27,12 @@ class BalancoController extends Controller
 
         }
 
+        setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+
+        $mes =  strftime('%B ', strtotime('today'));
 
 
-        return view('app.balanco',compact('movimentacoes','quant_total_vendas','quant_total_saidas'));
+
+        return view('app.balanco',compact('movimentacoes','quant_total_vendas','quant_total_saidas','mes'));
     }
 }

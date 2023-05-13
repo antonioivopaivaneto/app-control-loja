@@ -15,4 +15,7 @@ class Movimentacao extends Model
     public function produto(){
         return $this->hasOne('App\Models\Produto','id','produto_id');
     }
+    public function usuario(){
+        return $this->hasOne('App\Models\User','id','user_id');
+    }
 }

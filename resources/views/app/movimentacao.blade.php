@@ -6,7 +6,7 @@
 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="page-title">Criar ou ver movimentações</h2>
+                            <h2 class="page-title">Inserir nova ou ver movimentações</h2>
 
                         </div>
                     </div>
@@ -41,10 +41,10 @@
                                             <div class="form-group">
                                                 <label class="form-control">Motivo</label>
                                                 <select name="motivo"  class="form-control">
-                                                    <option value="0">Selecione o Motivo</option>
+                                                    <option value="0" selected disabled>Selecione o Motivo</option>
                                                     <option value="Reposição">Reposição</option>
-                                                    <option value="Reposição">Venda</option>
-                                                    <option value="Reposição">troca</option>
+                                                    <option value="Venda">Venda</option>
+                                                    <option value="troca">troca</option>
                                                     <option value="Devolução">Devolução</option>
                                                     <option value="Transferencia de loja">Transferencia de loja</option>
                                                     <option value="outro">outro</option>
@@ -58,7 +58,7 @@
                                         <label for="nome">Produto</label>
                                         <select  name="produto" class="form-control" required>
                                             <option value="0">Selecione o Produto</option>
-                                            @foreach ($produtos as $produto )
+                                            @foreach ($produtos->where('loja_id','=',Session('loja_id')) as $produto )
                                             <option value="{{$produto->id}}">{{$produto->nome}}</option>
 
                                             @endforeach
@@ -116,26 +116,23 @@
                                 <th>Motivo</th>
                                 <th>Produto</th>
                                 <th>Quantidade</th>
+                                <th>Valor</th>
                                 <th>Data e hora</th>
-                                <th>Editar ou Remover</th>
+                                <th>Remover</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($movimentacoes as $m )
+                                @foreach ($movimentacoes->where('loja_id','=',Session('loja_id')) as $m )
                                 <tr  >
                                         <td>{{$m->id}}</td>
                                         <td><span {{$m->tipo =='entrada'? $cor='text-success' : $cor = "text-danger"}} class="{{$cor}}">{{$m->tipo}}</span></td>
                                         <td>{{$m->motivo}}</td>
                                         <td>{{$m->produto->nome}}</td>
                                         <td><span {{$m->tipo =='entrada'? $traco='+' : $traco = "-"}} class="{{$cor}}">{{$traco}}{{$m->quantidade}}</span></td>
+                                        <td>R$ {{number_format($m->produto->preco_venda*$m->quantidade,2)}}</td>
                                         <td>{{ date('d/m H:m',strtotime( $m->created_at))}}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalEdit{{$m->id}}">
-                                                <span class="material-icons text-white">
-                                                edit
-                                                </span>
-                                            </button>
 
                                             <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalRemove{{$m->id}}">
                                                 <span class="material-icons text-white">

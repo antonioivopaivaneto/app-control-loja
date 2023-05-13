@@ -13,10 +13,6 @@
                         </div>
                     </div>
 
-
-
-
-
                     <div class="row">
                               <div class="col-6">
                               <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalCreate">

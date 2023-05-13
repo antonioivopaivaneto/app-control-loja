@@ -45,4 +45,10 @@ class User extends Authenticatable
     public function loja(){
         return $this->belongsToMany(loja::class,'Loja_Usuarios','user_id','loja_id');
     }
+
+    public function movimentacoes(){
+        return $this->belongsToMany(Movimentacao::class);
+    }
+
+
 }

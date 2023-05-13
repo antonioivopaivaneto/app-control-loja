@@ -18,7 +18,7 @@ class MovimentacaoController extends Controller
      */
     public function index()
     {
-        $movimentacoes = Movimentacao::all();
+        $movimentacoes = Movimentacao::orderBy('id', 'DESC')->get();
         $produtos = Produto::all();
         return view('app.movimentacao',compact('produtos','movimentacoes'));
     }

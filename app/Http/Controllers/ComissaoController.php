@@ -16,13 +16,17 @@ class ComissaoController extends Controller
     public function calcular(Request $request){
         $porcetagem = $request->porcetagem;
         $user = Session('id_user');
+        $mes_atual = date('m');
 
 
         $balanco = DB::table('movimentacoes')
         ->join('produtos', 'produtos.id', '=', 'movimentacoes.produto_id')
         ->where('tipo', '=', 'saida')
         ->where('user_id', '=', $user )
+        ->where('movimentacoes.loja_id', '=', Session('loja_id') )
+        ->whereMonth('movimentacoes.created_at', '=',$mes_atual)
         ->get();
+
 
          $quant_total_saidas= 0;
          $quant_total_vendas= 0;

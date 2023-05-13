@@ -67,12 +67,9 @@
                     <div class="page-sidebar-profile">
 
                         <div class="sidebar-profile-info">
-                            <a href="javascript:void(0);" class="account-settings-link">
-                                <p>
+                            <a href="javascript:void(0);" class="account-settings-link ml-4">
+                                <p class="ml-5">
                                     {{Session('name_user')}}
-
-
-
                                 </p>
                             </a>
 
@@ -111,6 +108,11 @@
                                 <li>
                                     <a href="{{route('comissao')}}"   class="waves-effect waves-grey {{Route::currentRouteName() == 'comissao.index' ? 'active' : ''}}">
                                         <i class="material-icons">calculate</i>Calcular Comissao
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('pagamento')}}"   class="waves-effect waves-grey {{Route::currentRouteName() == 'pagamento' ? 'active' : ''}}">
+                                        <i class="material-icons">payment</i>Pagamentos
                                     </a>
                                 </li>
                                 <li>

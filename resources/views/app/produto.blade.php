@@ -2,7 +2,6 @@
 @extends('app.layouts.base')
 
 @section('conteudo')
-SELECT m.*,p.* FROM movimentacoes as m inner join produtos as p on m.produto_id = p.id where MONTH(m.created_at)=MONTH(NOW());
 
 <div class="container-fluid">
                     <div class="row">
@@ -28,7 +27,7 @@ SELECT m.*,p.* FROM movimentacoes as m inner join produtos as p on m.produto_id 
                     <div class="row">
                         <div class="table-responsive">
                             <table id="mytable" class="table border border rounded text-center">
-                            <thead >
+                            <thead>
                             <tr>
                                 <th>Codigo</th>
                                 <th>Produto</th>
@@ -65,7 +64,6 @@ SELECT m.*,p.* FROM movimentacoes as m inner join produtos as p on m.produto_id 
                                         </td>
 
                                     </tr>
-                                    <@include('app.produto.estoque')
                                     @include('app.produto.remove')
                                     @include('app.produto.form-edit')
 

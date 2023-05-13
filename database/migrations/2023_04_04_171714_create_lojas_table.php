@@ -17,6 +17,7 @@ class CreateLojasTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('telefone');
+            $table->string('status');
             $table->timestamps();
         });
     }
