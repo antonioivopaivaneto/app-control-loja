@@ -9,6 +9,8 @@
         <meta name="author" content="stacks">
         <!-- Remove Tap Highlight on Windows Phone IE -->
         <meta name="msapplication-tap-highlight" content="no"/>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title -->
