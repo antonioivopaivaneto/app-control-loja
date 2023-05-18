@@ -11,7 +11,7 @@ use App\Http\Controllers\MovimentacaoController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,8 +22,6 @@ use Illuminate\Support\Facades\URL;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-URL::forceScheme('https');
 
 Route::get('/',[LoginController::class,'index'])->name('/');
 Route::post('login',[LoginController::class,'login'])->name('login');

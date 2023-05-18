@@ -87,6 +87,7 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
+
         Categoria::destroy($id);
         return redirect()->route('categoria.index')->with('message','Removeu com sucesso ');
     }
